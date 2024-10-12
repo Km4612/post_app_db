@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'product_screen.dart';
-import 'profile_screen.dart';
 
 class HomeScreeen extends StatefulWidget {
   const HomeScreeen({super.key});
@@ -14,31 +12,37 @@ class _HomeScreeenState extends State<HomeScreeen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('หน้าแรก'),
+        title: const Text('หน้าแรก'),
         backgroundColor: Colors.amber,
       ),
       body: _body(),
     );
   }
 
-  //เมธอดสำหรับเปิดหน้าสมัครสมาชิก
-  void _openRegister() {
-    Navigator.of(context).pushNamed('/registerscreen');
+  //เมธอดสำหรับเปิดหน้าล็อกอิน
+  void _openLogin() {
+    Navigator.of(context).pushNamed('../login'); // นำทางไปยังหน้าล็อกอิน
   }
 
-  //เมธอดสำหรับเปิดหน้ารายการ
+  // เมธอดสำหรับเปิดหน้าสมัครสมาชิก
+  void _openRegister() {
+    Navigator.of(context).pushNamed('../registerscreen');
+  }
+
+  // เมธอดสำหรับเปิดหน้ารายการ
   void _openProduct() {
-    Navigator.of(context).pushNamed('/productScreen');
+    Navigator.of(context).pushNamed('../productScreen');
   }
 
   void _openAboutus() {
-    Navigator.of(context).pushNamed('/aboutusscreen');
+    Navigator.of(context).pushNamed('../aboutusscreen');
   }
 
   //เมธอดสำหรับแสดงหนาจอเมนู
   Widget _body() {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
             width: 250,
@@ -60,9 +64,18 @@ class _HomeScreeenState extends State<HomeScreeen> {
               width: 250,
               child: ElevatedButton.icon(
                 onPressed: _openAboutus,
-                icon: Icon(Icons.list_rounded),
-                label: Text('เกี่ยวกับฉัน'),
-              ))
+                icon: Icon(Icons.info),
+                label: Text('เกี่ยวกับเรา'),
+              )),
+          // เพิ่มปุ่มสำหรับเปิดหน้าล็อกอิน
+          SizedBox(
+            width: 250,
+            child: ElevatedButton.icon(
+              onPressed: _openLogin,
+              icon: Icon(Icons.login),
+              label: Text('ล็อกอิน'),
+            ),
+          ),
         ],
       ),
     );
